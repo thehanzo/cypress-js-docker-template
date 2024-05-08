@@ -1,0 +1,79 @@
+{
+  "author": "Jose Quesada jose.quesada@gorillalogic.com",
+  "bugs": {
+    "url": "https://github.com/josequesadaGL/gorilla-practice.git"
+  },
+  "dependencies": {
+    "cypress": "^9.3.1",
+    "rimraf": "3.0.2"
+  },
+  "description": "Cypress end-to-end test automation. Using ES Modules, Chai and Should.",
+  "devDependencies": {
+    "cypress-grep": "^2.13.1",
+    "cypress-multi-reporters": "^1.5.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-cypress": "2.12.1",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^3.4.1",
+    "husky": "6.0.0",
+    "junit-merge": "^2.0.0",
+    "lint-staged": "10.5.4",
+    "mocha": "^9.2.0",
+    "mocha-junit-reporter": "^2.0.2",
+    "mochawesome": "^7.0.1",
+    "mochawesome-merge": "^4.2.1",
+    "mochawesome-report-generator": "^6.0.1",
+    "prettier": "2.5.1",
+    "pretty-quick": "3.1.3"
+  },
+  "homepage": "https://github.com/josequesadaGL/gorilla-practice",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged --allow-empty"
+    }
+  },
+  "keywords": [
+    "chai",
+    "cypress",
+    "cypress automation",
+    "cypress boilerplate",
+    "cypress example",
+    "es modules",
+    "should",
+    "e2e",
+    "e2e tests",
+    "boilerplate",
+    "integration test",
+    "test automation",
+    "javascript"
+  ],
+  "license": "MIT",
+  "lint-staged": {
+    "*.{js}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "name": "gorilla-automation-playground",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josequesadaGL/gorilla-practice.git"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js --fix",
+    "cleanReports": "npx rimraf cypress/results/* || true && npx rimraf mochawesome-report/* || true",
+    "mochawesome:merge": "npx mochawesome-merge \"cypress/results/mochawesome/*.json\" > mochawesome.json && npx marge mochawesome.json",
+    "junit:merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/result.xml",
+    "processReports": "npm run mochawesome:merge && npm run junit:merge",
+    "report": "cypress run --reporter cypress-multi-reporters --reporter-options configFile=reporter-config.json",
+    "gui": "npx cypress open",
+    "dashboard": "npm run chrome --group Chrome --record --parallel && npm run firefox --group Firefox --record --parallel",
+    "chrome": "npm run report --headless --browser chrome",
+    "firefox": "npm run report --headless --browser firefox",
+    "e2e": "npm run report --headless --browser chrome --env grepTags=\"e2e\"",
+    "api": "npm run report --env grepTags=\"api\""
+  },
+  "version": "1.0.0"
+}

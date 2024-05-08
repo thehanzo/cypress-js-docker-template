@@ -1,0 +1,11 @@
+{
+    "baseUrl": "http://3.14.176.40/",
+    "watchForFileChanges": false,
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "configFile": "reporter-config.json"
+    },
+    "extends": "./cypress.env.json",
+    "testFiles": "**/*.spec.js",
+    "defaultCommandTimeout": 5000
+}
